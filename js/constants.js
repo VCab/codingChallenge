@@ -1,0 +1,4 @@
+export const CONSTANTS = {
+    VAT_PERCENTAGE: 0.2,
+    MINIMUM_RENT_ALLOWED: 120
+}

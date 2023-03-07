@@ -1,0 +1,23 @@
+{
+  "name": "codingchallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tests.js",
+  "type": "module",
+  "scripts": {
+    "test": "node tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VCab/codingChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VCab/codingChallenge/issues"
+  },
+  "homepage": "https://github.com/VCab/codingChallenge#readme",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
