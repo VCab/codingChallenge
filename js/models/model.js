@@ -1,3 +1,4 @@
+/** Function that represents the structure of a Client */
 export function Client() {
     const self = this;
 
@@ -16,11 +17,12 @@ export function Client() {
     }
 
     self.load = function () {
-        self.map(organization);
+        self.map(serverData);
     }
 
 }
 
+/** Function that represents the structure of a Division */
 function Division(client) {
     const self = this;
 
@@ -42,6 +44,7 @@ function Division(client) {
     }
 }
 
+/** Function that represents the structure of a Division */
 function Area(division) {
     const self = this;
 
@@ -66,6 +69,7 @@ function Area(division) {
     }
 }
 
+/** Function that represents the structure of a Branch */
 function Branch(area) {
     const self = this;
 
@@ -85,6 +89,7 @@ function Branch(area) {
     }
 }
 
+/** Function that represents the structure of a Configuration */
 function Config() {
     const self = this;
 
@@ -99,7 +104,7 @@ function Config() {
     }
 }
 
-const organization = {
+const serverData = {
     'name': 'client',
     'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
     'divisions': [

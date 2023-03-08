@@ -1,10 +1,10 @@
 import { CONSTANTS } from './constants.js';
 
 /**
- * Returns a boolean depending of if the rent amount is within the allowed range or not
- * @param {Integer} rent_amount
- * @param {String} rent_period
- * @returns {Boolean}
+ * Returns a boolean depending on if the rent amount is within the allowed range or not
+ * @param {integer} rent_amount
+ * @param {string} rent_period
+ * @returns {boolean} result of the rent amount range validation
  */
 function validateRentAmountRange(rent_amount, rent_period) {
     if (rent_period === 'week') {
@@ -16,8 +16,8 @@ function validateRentAmountRange(rent_amount, rent_period) {
 
 /**
  * Returns a boolean depending on if the data type for the rent amount is correct or not
- * @param {Integer} rent_amount 
- * @returns {Boolean}
+ * @param {integer} rent_amount 
+ * @returns {boolean} result of the result of the rent amount validation
  */
 function validateRentAmount(rent_amount) {
     return Number.isInteger(rent_amount) && rent_amount >= 1;
@@ -25,8 +25,8 @@ function validateRentAmount(rent_amount) {
 
 /**
  * Returns a boolean depending on if the data type for the rent period is correct and it's values are "week" or "month"
- * @param {String} rent_period 
- * @returns {Boolean}
+ * @param {string} rent_period 
+ * @returns {boolean} result of the result of the rent period validation
  */
 function validateRentPeriod(rent_period) {
     const rentPeriodsAllowed = ['week', 'month'];
@@ -37,8 +37,8 @@ function validateRentPeriod(rent_period) {
 /**
  * If the branch (organization_unit) does not have a config,
  * the function recursively checks the parent entities until it finds one that has it
- * @param {*} organisation_unit 
- * @returns {}
+ * @param {function} organisation_unit it's an instance of a branch 
+ * @returns {function} instance of the parent that has the config object
  */
 function checkIfParentHasConfigurationObject(organisation_unit) {
     if (!organisation_unit.hasConfig) {
@@ -49,16 +49,16 @@ function checkIfParentHasConfigurationObject(organisation_unit) {
 }
 
 /**
- * 
- * @param {Integer} rent_amount
- * @param {String} rent_period
- * @param {Object} organisation_unit
- * @returns {Integer}
+ * Function to calculate the fee that each branch of a client needs to pay
+ * @param {integer} rent_amount
+ * @param {string} rent_period
+ * @param {object} organisation_unit
+ * @returns {integer} calculated value of the membership fee for a given branch
  */
 export function calculate_membership_fee(rent_amount, rent_period, organisation_unit) {
     const weeklyRent = rent_period === 'week' ? rent_amount : (rent_amount / 4);
     const VAT = weeklyRent * CONSTANTS.VAT_PERCENTAGE;
-    let membershipFee = Number();
+    let membershipFee;
 
     if (!validateRentAmount(rent_amount)) {
         throw new Error('Rent Amount inserted is not allowed. Wrong format or range inserted.');

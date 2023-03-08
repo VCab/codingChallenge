@@ -5,12 +5,8 @@ const client = new Client();
 client.load();
 
 
-function calculateMemberships() {
-    client.divisions.forEach(division => {
-        division.areas.forEach(area => area.branches.forEach(branch =>
-            console.log(`${branch.name} fee: ${calculate_membership_fee(1000, 'month', branch)}`)
-        ))
-    });
-}
-
-calculateMemberships();
+client.divisions.forEach(division => {
+    division.areas.forEach(area => area.branches.forEach(branch =>
+        console.log(`${branch.name} fee: ${calculate_membership_fee(1000, 'month', branch)}`)
+    ))
+});
