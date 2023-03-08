@@ -1,17 +1,17 @@
 {
   "name": "codingchallenge",
   "version": "1.0.0",
-  "description": "",
-  "main": "tests.js",
+  "description": "Coding Challenge",
+  "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "node tests.js"
+    "test": "mocha './js/tests/*.js'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VCab/codingChallenge.git"
   },
-  "author": "",
+  "author": "Vasco Cabral",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VCab/codingChallenge/issues"

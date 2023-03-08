@@ -1,8 +1,4 @@
-import { Client } from "../models/model.js";
-import { CONSTANTS } from "../constants.js";
-
-const client = new Client();
-client.load();
+import { CONSTANTS } from './constants.js';
 
 /**
  * Returns a boolean depending of if the rent amount is within the allowed range or not
@@ -28,20 +24,28 @@ function validateRentAmount(rent_amount) {
 }
 
 /**
+ * Returns a boolean depending on if the data type for the rent period is correct and it's values are "week" or "month"
+ * @param {String} rent_period 
+ * @returns {Boolean}
+ */
+function validateRentPeriod(rent_period) {
+    const rentPeriodsAllowed = ['week', 'month'];
+
+    return typeof rent_period === 'string' && rentPeriodsAllowed.includes(rent_period);
+}
+
+/**
  * If the branch (organization_unit) does not have a config,
  * the function recursively checks the parent entities until it finds one that has it
  * @param {*} organisation_unit 
  * @returns {}
  */
 function checkIfParentHasConfigurationObject(organisation_unit) {
-
     if (!organisation_unit.hasConfig) {
         checkHasConfigurationObject(organisation_unit.parent);
-    }
-    else {
+    } else {
         return organisation_unit;
     }
-
 }
 
 /**
@@ -51,16 +55,20 @@ function checkIfParentHasConfigurationObject(organisation_unit) {
  * @param {Object} organisation_unit
  * @returns {Integer}
  */
-function calculate_membership_fee(rent_amount, rent_period, organisation_unit) {
-    const rentAmount = Number(rent_amount);
-    const weeklyRent = rent_period === 'week' ? rentAmount : (rentAmount / 4);
+export function calculate_membership_fee(rent_amount, rent_period, organisation_unit) {
+    const weeklyRent = rent_period === 'week' ? rent_amount : (rent_amount / 4);
+    const VAT = weeklyRent * CONSTANTS.VAT_PERCENTAGE;
     let membershipFee = Number();
 
-    if (!validateRentAmount(rentAmount)) {
-        throw new Error('Rent Amount inserted is not allowed. Wrong format or range inputed.');
+    if (!validateRentAmount(rent_amount)) {
+        throw new Error('Rent Amount inserted is not allowed. Wrong format or range inserted.');
     }
 
-    if (validateRentAmountRange(rentAmount, rent_period)) {
+    if (!validateRentPeriod(rent_period)) {
+        throw new Error('Rent Period inserted is not allowed. Allowed values are "week" or "month".');
+    }
+
+    if (validateRentAmountRange(rent_amount, rent_period)) {
         throw new Error('Rent Amount is outside the allowed range.');
     }
 
@@ -68,27 +76,15 @@ function calculate_membership_fee(rent_amount, rent_period, organisation_unit) {
         organisation_unit = checkIfParentHasConfigurationObject(organisation_unit.parent);
     }
 
-    const VAT = weeklyRent * CONSTANTS.VAT_PERCENTAGE;
-
     if (organisation_unit.hasConfig && organisation_unit.config.has_fixed_membership_fee) {
-        membershipFee = organisation_unit.config.fixed_membership_fee_amount;
+        return membershipFee = organisation_unit.config.fixed_membership_fee_amount;
     } else {
-        if (rentAmount < CONSTANTS.MINIMUM_RENT_ALLOWED) {
+        if (rent_amount < CONSTANTS.MINIMUM_RENT_ALLOWED) {
             const minimumFee = CONSTANTS.MINIMUM_RENT_ALLOWED + VAT;
 
-            membershipFee = minimumFee;
+            return membershipFee = minimumFee;
         }
 
-        membershipFee = weeklyRent + VAT;
-
+        return membershipFee = weeklyRent + VAT;
     }
-
-    console.log(`${organisation_unit.name} fee: ${membershipFee}`);
-    return membershipFee;
 }
-
-function calculateMemberships() {
-    client.divisions.forEach(division => { division.areas.forEach(area => area.branches.forEach(branch => calculate_membership_fee(200, 'month', branch))) })
-}
-
-window.calculateMemberships = calculateMemberships;

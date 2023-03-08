@@ -16,7 +16,7 @@ export function Client() {
     }
 
     self.load = function () {
-        self.map(serverData());
+        self.map(organization);
     }
 
 }
@@ -99,59 +99,57 @@ function Config() {
     }
 }
 
-function serverData() {
-    return {
-        'name': 'client',
-        'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
-        'divisions': [
-            {
-                'name': 'division_a',
-                'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
-                'areas': [
-                    {
-                        'name': 'area_a', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 45000 },
-                        'branches': [
-                            { 'name': 'branch_a', 'config': null },
-                            { 'name': 'branch_b', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_c', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_d', 'config': null }
-                        ]
-                    },
-                    {
-                        'name': 'area_b', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
-                        'branches': [
-                            { 'name': 'branch_e', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_f', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_g', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_h', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
-                        ]
-                    }
-                ]
-            },
-            {
-                'name': 'division_b',
-                'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 35000 },
-                'areas': [
-                    {
-                        'name': 'area_c', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 45000 },
-                        'branches': [
-                            { 'name': 'branch_i', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_j', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_k', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 25000 } },
-                            { 'name': 'branch_l', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
-                        ]
-                    },
-                    {
-                        'name': 'area_d', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
-                        'branches': [
-                            { 'name': 'branch_m', 'config': null },
-                            { 'name': 'branch_n', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_o', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
-                            { 'name': 'branch_p', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
-}
+const organization = {
+    'name': 'client',
+    'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
+    'divisions': [
+        {
+            'name': 'division_a',
+            'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
+            'areas': [
+                {
+                    'name': 'area_a', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 45000 },
+                    'branches': [
+                        { 'name': 'branch_a', 'config': null },
+                        { 'name': 'branch_b', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_c', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_d', 'config': null }
+                    ]
+                },
+                {
+                    'name': 'area_b', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
+                    'branches': [
+                        { 'name': 'branch_e', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_f', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_g', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_h', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
+                    ]
+                }
+            ]
+        },
+        {
+            'name': 'division_b',
+            'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 35000 },
+            'areas': [
+                {
+                    'name': 'area_c', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 45000 },
+                    'branches': [
+                        { 'name': 'branch_i', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_j', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_k', 'config': { 'has_fixed_membership_fee': true, 'fixed_membership_fee_amount': 25000 } },
+                        { 'name': 'branch_l', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
+                    ]
+                },
+                {
+                    'name': 'area_d', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 },
+                    'branches': [
+                        { 'name': 'branch_m', 'config': null },
+                        { 'name': 'branch_n', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_o', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } },
+                        { 'name': 'branch_p', 'config': { 'has_fixed_membership_fee': false, 'fixed_membership_fee_amount': 0 } }
+                    ]
+                }
+            ]
+        }
+    ]
+};
